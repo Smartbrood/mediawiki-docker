@@ -147,7 +147,7 @@ wfLoadExtension( 'SyntaxHighlight_GeSHi' );
 # For fail2ban
 $fail2banfile = "/var/log/MWf2b.log"; // the file fail2ban will read
 $fail2banid = $wgSitename; // some info if you use the same file for many wikis
-require_once( "$IP/w/extensions/fail2banlog.php" );
+require_once( "$IP/extensions/fail2banlog.php" );
 
 # File upload extensions
 $wgFileExtensions[] = 'docx';
