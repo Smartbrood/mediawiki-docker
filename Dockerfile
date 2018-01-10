@@ -37,7 +37,8 @@ RUN mkdir -p /var/www/data \
 RUN mkdir -p /var/www/html/w \
     && chown -R www-data:www-data /var/www/html/w \
     && touch /var/log/MWf2b.log \
-    && ln -sf /dev/stdout /var/log/MWf2b.log
+    && ln -sf /dev/stdout /var/log/MWf2b.log \
+    && mkdir -p /efs/mediawiki_upload
 
 WORKDIR /var/www/html/w
 
@@ -52,6 +53,8 @@ RUN curl -fSL "https://releases.wikimedia.org/mediawiki/${MEDIAWIKI_MAJOR_VERSIO
 	&& echo "${MEDIAWIKI_SHA512} *mediawiki.tar.gz" | sha512sum -c - \
 	&& tar -xz --strip-components=1 -f mediawiki.tar.gz \
 	&& rm mediawiki.tar.gz \
+        && rm -rf ./images \
+        && ln -s  /efs/mediawiki_upload ./images \
 	&& chown -R www-data:www-data extensions skins cache images
 
 COPY files/docker-php-entrypoint /usr/local/bin/docker-php-entrypoint
