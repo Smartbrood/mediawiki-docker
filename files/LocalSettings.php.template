@@ -97,14 +97,14 @@ $wgShellLocale = "C.UTF-8";
 # Site language code, should be one of the list in ./languages/data/Names.php
 $wgLanguageCode = "ru";
 
-$wgSecretKey = "7c781ddda637d999abd39d1761aa4b151b53d3b533e2529c3ecc8feff4e2da28";
+$wgSecretKey = "${SECRETKEY}";
 
 # Changing this will log out all existing sessions.
 $wgAuthenticationTokenVersion = "1";
 
 # Site upgrade key. Must be set to a string (default provided) to turn on the
 # web installer while LocalSettings.php is in place
-$wgUpgradeKey = "b5dcc4d31cc4633c";
+$wgUpgradeKey = "${UPGRADEKEY}";
 
 ## For attaching licensing metadata to pages, and displaying an
 ## appropriate copyright notice / icon. GNU Free Documentation
@@ -147,7 +147,7 @@ wfLoadExtension( 'SyntaxHighlight_GeSHi' );
 # For fail2ban
 $fail2banfile = "/var/log/MWf2b.log"; // the file fail2ban will read
 $fail2banid = $wgSitename; // some info if you use the same file for many wikis
-require_once( "$IP/extensions/fail2banlog.php" );
+require_once( "$IP/w/extensions/fail2banlog.php" );
 
 # File upload extensions
 $wgFileExtensions[] = 'docx';
