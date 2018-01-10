@@ -1,0 +1,10 @@
+#!/bin/sh
+set -e
+
+WORKDIR="/var/www/html/w"
+
+envsubst '$DBserver,$DBname,$DBuser,$DBpassword,$Sitename,$MetaNamespace,$Server' < /LocalSettings.php.template > ${WORKDIR}/LocalSettings.php
+
+cp /fail2banlog.php ${WORKDIR}/extensions/fail2banlog.php
+
+exec "$@"
