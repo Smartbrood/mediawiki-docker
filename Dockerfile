@@ -37,7 +37,9 @@ RUN mkdir -p /var/www/data \
 RUN mkdir -p /var/www/html/w \
     && chown -R www-data:www-data /var/www/html/w \
     && touch /var/log/MWf2b.log \
-    && ln -sf /dev/stdout /var/log/MWf2b.log \
+##    && ln -sf /dev/stdout /var/log/MWf2b.log \
+    && touch /var/log/MWf2b.log \
+    && chown -R www-data:www-data /var/log/MWf2b.log \
     && mkdir -p /efs/mediawiki_upload
 
 WORKDIR /var/www/html/w
