@@ -43,7 +43,9 @@ RUN mkdir -p /var/www/html/w \
     && mkdir -p /efs/mediawiki_upload \
     && chown -R www-data:www-data /efs/mediawiki_upload
 
-WORKDIR /var/www/html/w
+VOLUME /var/www/html
+
+WORKDIR /var/www/html
 
 # Version
 ENV MEDIAWIKI_MAJOR_VERSION 1.30
