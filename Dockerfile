@@ -40,7 +40,8 @@ RUN mkdir -p /var/www/html/w \
 ##    && ln -sf /dev/stdout /var/log/MWf2b.log \
     && touch /var/log/MWf2b.log \
     && chown -R www-data:www-data /var/log/MWf2b.log \
-    && mkdir -p /efs/mediawiki_upload
+    && mkdir -p /efs/mediawiki_upload \
+    && chown -R www-data:www-data /efs/mediawiki_upload
 
 WORKDIR /var/www/html/w
 
