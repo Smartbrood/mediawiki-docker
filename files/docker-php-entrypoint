@@ -1,13 +1,16 @@
 #!/usr/bin/env sh
 set -e
 
-WORKDIR="/var/www/html/w"
 export SECRETKEY=`openssl rand -hex 32`
 export UPGRADEKEY=`openssl rand -hex 8`
 
-envsubst '$DBserver,$DBname,$DBuser,$DBpassword,$Sitename,$MetaNamespace,$Server,$SECRETKEY,$UPGRADEKEY' < /LocalSettings.php.template > ${WORKDIR}/LocalSettings.php
+if [ ! -d /var/www/html/w ] ; then
+    mv /w /var/www/html/
+fi 
 
-cp /fail2banlog.php ${WORKDIR}/extensions/fail2banlog.php
+envsubst '$DBserver,$DBname,$DBuser,$DBpassword,$Sitename,$MetaNamespace,$Server,$SECRETKEY,$UPGRADEKEY' < /LocalSettings.php.template > /var/www/html/w/LocalSettings.php
+
+cp /fail2banlog.php /var/www/html/w/extensions/fail2banlog.php
 
 exec "$@"
 

@@ -34,8 +34,8 @@ RUN { \
 RUN mkdir -p /var/www/data \
     && chown -R www-data:www-data /var/www/data
 
-RUN mkdir -p /var/www/html/w \
-    && chown -R www-data:www-data /var/www/html/w \
+RUN mkdir /w \
+    && chown -R www-data:www-data /w \
     && touch /var/log/MWf2b.log \
 ##    && ln -sf /dev/stdout /var/log/MWf2b.log \
     && touch /var/log/MWf2b.log \
@@ -45,7 +45,7 @@ RUN mkdir -p /var/www/html/w \
 
 VOLUME /var/www/html
 
-WORKDIR /var/www/html
+WORKDIR /w
 
 # Version
 ENV MEDIAWIKI_MAJOR_VERSION 1.30
@@ -65,6 +65,8 @@ RUN curl -fSL "https://releases.wikimedia.org/mediawiki/${MEDIAWIKI_MAJOR_VERSIO
 COPY files/docker-php-entrypoint /usr/local/bin/docker-php-entrypoint
 COPY files/LocalSettings.php.template /LocalSettings.php.template
 COPY files/fail2banlog.php /fail2banlog.php
+
+WORKDIR /var/www/html
 
 ENTRYPOINT ["docker-php-entrypoint"]
 
