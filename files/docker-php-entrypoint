@@ -1,12 +1,13 @@
-#!/bin/sh
+#!/usr/bin/env sh
 set -e
 
 WORKDIR="/var/www/html/w"
-SECRETKEY=`openssl rand -hex 32`
-UPGRADEKEY=`openssl rand -hex 8`
+export SECRETKEY=`openssl rand -hex 32`
+export UPGRADEKEY=`openssl rand -hex 8`
 
 envsubst '$DBserver,$DBname,$DBuser,$DBpassword,$Sitename,$MetaNamespace,$Server,$SECRETKEY,$UPGRADEKEY' < /LocalSettings.php.template > ${WORKDIR}/LocalSettings.php
 
 cp /fail2banlog.php ${WORKDIR}/extensions/fail2banlog.php
 
 exec "$@"
+
